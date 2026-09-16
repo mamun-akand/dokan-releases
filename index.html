@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dokan - Download</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --forest: #14382C; --forest-light: #2A6B4F; --lime: #B5E26B; --lime-soft: #EAF6D3; --ink: #14211B; --muted: #6B7A72; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; font-family: "Hind Siliguri", system-ui, sans-serif; color: var(--ink); background: linear-gradient(160deg, var(--forest), var(--forest-light)); display: flex; align-items: center; justify-content: center; padding: 24px 16px; }
+  .card { background: #fff; border-radius: 24px; padding: 32px 28px; max-width: 420px; width: 100%; box-shadow: 0 24px 60px rgba(0,0,0,.25); text-align: center; }
+  .mark { width: 76px; height: 76px; border-radius: 22px; background: var(--lime); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .mark svg { width: 42px; height: 42px; fill: none; stroke: var(--forest); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  h1 { margin: 0; font-size: 28px; font-weight: 700; color: var(--forest); }
+  .sub { margin: 6px 0 22px; color: var(--muted); font-size: 15px; }
+  .version { display: inline-block; background: var(--lime-soft); color: var(--forest); font-weight: 600; font-size: 13px; padding: 4px 12px; border-radius: 999px; margin-bottom: 22px; min-height: 26px; }
+  a.btn { display: block; background: var(--forest); color: #fff; text-decoration: none; font-weight: 600; font-size: 17px; padding: 15px 20px; border-radius: 14px; transition: transform .12s ease, background .12s ease; }
+  a.btn:active { transform: scale(.98); }
+  a.btn:hover { background: var(--forest-light); }
+  a.btn small { display: block; font-weight: 400; font-size: 13px; opacity: .8; margin-top: 2px; }
+  a.alt { display: inline-block; margin-top: 14px; color: var(--muted); font-size: 14px; }
+  .steps { text-align: left; margin: 26px 0 0; padding: 18px; background: #F6F8F6; border-radius: 16px; font-size: 14px; color: var(--ink); }
+  .steps b { color: var(--forest); }
+  .steps ol { margin: 8px 0 0; padding-left: 20px; }
+  .steps li { margin: 6px 0; }
+  .lang { position: absolute; top: 14px; right: 16px; background: rgba(255,255,255,.14); color: #fff; border: 0; border-radius: 999px; padding: 6px 14px; font: inherit; font-weight: 600; cursor: pointer; }
+</style>
+</head>
+<body>
+<button class="lang" id="lang">বাংলা</button>
+<main class="card">
+  <div class="mark"><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></div>
+  <h1>Dokan</h1>
+  <p class="sub" data-en="Your shop, in your pocket." data-bn="আপনার দোকান, আপনার পকেটে।">Your shop, in your pocket.</p>
+  <span class="version" id="version"></span>
+  <a class="btn" id="dl" href="https://github.com/mamun-akand/dokan-releases/releases/latest/download/Dokan-arm64.apk">
+    <span data-en="Download for Android" data-bn="অ্যান্ড্রয়েডের জন্য ডাউনলোড">Download for Android</span>
+    <small id="size"></small>
+  </a>
+  <a class="alt" href="https://github.com/mamun-akand/dokan-releases/releases/latest/download/Dokan-arm32.apk" data-en="Older phone? Get the 32-bit version" data-bn="পুরোনো ফোন? ৩২-বিট সংস্করণ নিন">Older phone? Get the 32-bit version</a>
+  <div class="steps">
+    <b data-en="First time installing" data-bn="প্রথমবার ইনস্টল">First time installing</b>
+    <ol>
+      <li data-en="Open the downloaded file." data-bn="ডাউনলোড করা ফাইলটি খুলুন।">Open the downloaded file.</li>
+      <li data-en="If asked, allow installs from this source." data-bn="জিজ্ঞেস করলে এই উৎস থেকে ইনস্টলের অনুমতি দিন।">If asked, allow installs from this source.</li>
+      <li data-en="Later updates arrive inside the app - one tap." data-bn="পরের আপডেট অ্যাপের ভেতরেই আসবে - এক ট্যাপে।">Later updates arrive inside the app - one tap.</li>
+    </ol>
+  </div>
+</main>
+<script>
+  const bnDigits = '০১২৩৪৫৬৭৮৯';
+  const bn = s => s.replace(/\d/g, d => bnDigits[d]);
+  let lang = localStorage.getItem('lang') || 'en';
+  let latest = null;
+  function render() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-en]').forEach(el => el.textContent = el.dataset[lang]);
+    document.getElementById('lang').textContent = lang === 'en' ? 'বাংলা' : 'English';
+    if (latest) {
+      const v = lang === 'en' ? `Version ${latest.version} · ${latest.date}` : `সংস্করণ ${bn(latest.version)} · ${bn(latest.date)}`;
+      document.getElementById('version').textContent = v;
+    }
+  }
+  document.getElementById('lang').onclick = () => { lang = lang === 'en' ? 'bn' : 'en'; localStorage.setItem('lang', lang); render(); };
+  fetch('latest.json', { cache: 'no-store' }).then(r => r.json()).then(j => { latest = j; render(); }).catch(() => {});
+  render();
+</script>
+</body>
+</html>
