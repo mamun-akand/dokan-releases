@@ -100,9 +100,33 @@
   body.only { padding: 0; background: var(--paper); }
   body.only .bar, body.only-card .poster, body.only-poster .card { display: none; }
   body.only .sheet { gap: 0; }
-  body.only .card, body.only .poster { box-shadow: none; max-width: none; }
+  body.only .card, body.only .poster, body.only .big { box-shadow: none; max-width: none; }
   body.only-card .card { width: 100vw; height: 100vw; }
   body.only-poster .poster { width: 100vw; height: calc(100vw * 297 / 210); }
+
+
+  /* ---------- A4 scan-from-far sheet ---------- */
+  .big {
+    width: 210mm; height: 297mm; max-width: 100%; aspect-ratio: 210 / 297;
+    background: var(--paper); color: var(--ink); position: relative; overflow: hidden;
+    display: grid; grid-template-rows: auto 1fr auto; justify-items: center; align-items: center; padding: 12mm 12mm 10mm; gap: 4mm;
+    box-shadow: 0 30px 60px rgba(0,0,0,.2);
+  }
+  .big::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 8mm; background: var(--forest); }
+  .big::after { content: ""; position: absolute; inset: auto 0 0 0; height: 8mm; background: var(--lime); }
+  .big > * { position: relative; }
+  .big .brand { margin-top: 6mm; }
+  .big .brand span { color: var(--forest); }
+  .big .qr { width: 176mm; height: 176mm; }
+  .big .qr .centre { width: 34mm; height: 34mm; border-radius: 8mm; }
+  .big .qr .centre i { width: 26mm; height: 26mm; border-radius: 6.4mm; }
+  .big .qr .centre svg { width: 16mm; height: 16mm; }
+  .big .tail { text-align: center; display: grid; gap: 1.5mm; margin-bottom: 4mm; }
+  .big .tail b { font-size: 11mm; font-weight: 700; color: var(--forest); line-height: 1.15; }
+  .big .tail span { font-size: 5mm; color: var(--muted); font-weight: 500; }
+  .big .tail .url { font-size: 4.6mm; color: var(--forest); font-weight: 600; letter-spacing: .01em; }
+  body.only-big .poster, body.only-big .card { display: none; }
+  body.only-big .big { width: 100vw; height: calc(100vw * 297 / 210); }
 
   @media (max-width: 640px) {
     .poster, .card { box-shadow: 0 12px 30px rgba(0,0,0,.2); }
@@ -112,7 +136,7 @@
     body { background: #fff; padding: 0; }
     .bar { display: none; }
     .sheet { gap: 0; }
-    .poster, .card { box-shadow: none; break-after: page; max-width: none; }
+    .poster, .card, .big { box-shadow: none; break-after: page; max-width: none; }
     .card { margin: 10mm auto 0; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
@@ -120,7 +144,7 @@
 </head>
 <body>
 <div class="bar">
-  <p>এ৪ পোস্টার (দেয়াল/কাউন্টার) আর চৌকো কার্ড (হোয়াটসঅ্যাপ/ফেসবুক)। প্রিন্টে রং রাখতে "Background graphics" চালু রাখুন।</p>
+  <p>এ৪ পোস্টার (দেয়াল/কাউন্টার), চৌকো কার্ড (হোয়াটসঅ্যাপ/ফেসবুক) আর বড় QR শিট (দূর থেকে স্ক্যান)। প্রিন্টে রং রাখতে "Background graphics" চালু রাখুন।</p>
   <button type="button" id="print" onclick="window.print()">প্রিন্ট / PDF</button>
 </div>
 
@@ -194,10 +218,27 @@
   </div>
 </section>
 
+
+<section class="big" aria-label="Dokan large QR sheet">
+  <div class="brand">
+    <div class="mark"><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></div>
+    <div><b>দোকান</b><span>Dokan · Android app</span></div>
+  </div>
+  <div class="qr">
+    <svg class="code" viewBox="0 0 41 41" shape-rendering="crispEdges" role="img" aria-label="QR code to the Dokan download page"><path stroke="#14382C" d="M0 0.5h7m1 0h1m1 0h1m1 0h1m3 0h1m2 0h1m1 0h2m2 0h2m1 0h1m1 0h3m1 0h7M0 1.5h1m5 0h1m1 0h1m1 0h2m4 0h3m2 0h3m1 0h4m1 0h1m1 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h2m2 0h5m1 0h3m1 0h2m3 0h1m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m2 0h3m1 0h4m1 0h1m2 0h4m1 0h2m2 0h1m3 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m4 0h1m1 0h1m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m1 0h1m1 0h3m7 0h3m4 0h2m5 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h5m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m2 0h1m4 0h1M2 8.5h3m1 0h1m1 0h1m1 0h6m2 0h1m1 0h1m2 0h3m3 0h1m3 0h3m2 0h3M0 9.5h3m1 0h1m5 0h2m5 0h1m1 0h5m5 0h8m1 0h2M0 10.5h1m1 0h1m1 0h3m1 0h1m1 0h1m6 0h1m6 0h1m1 0h2m2 0h1m1 0h2m1 0h2m2 0h1M0 11.5h1m3 0h2m3 0h1m1 0h1m1 0h5m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h3m3 0h2m2 0h1M0 12.5h1m1 0h5m1 0h3m3 0h2m1 0h2m2 0h1m1 0h4m1 0h2m1 0h1m1 0h1m3 0h2m1 0h1M4 13.5h2m4 0h2m1 0h1m3 0h2m1 0h1m1 0h3m2 0h1m1 0h1m2 0h1m3 0h1m1 0h3M0 14.5h3m1 0h1m1 0h4m1 0h1m3 0h1m1 0h1m3 0h4m2 0h2m2 0h1m1 0h1m2 0h3M0 15.5h1m2 0h1m3 0h1m1 0h2m1 0h2m6 0h1m1 0h1m1 0h1m1 0h2m2 0h3m1 0h4m2 0h1M3 16.5h2m1 0h1m1 0h1m2 0h2m1 0h3m1 0h6m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1M1 17.5h3m1 0h1m1 0h1m2 0h1m1 0h2m1 0h5m1 0h3m1 0h1m2 0h5m1 0h4m1 0h2M0 18.5h2m3 0h2m4 0h1m2 0h1m1 0h1m1 0h1m1 0h1m3 0h1m2 0h3m4 0h1m1 0h1M0 19.5h1m1 0h2m1 0h1m1 0h2m1 0h2m3 0h1m2 0h2m1 0h1m2 0h2m3 0h3m1 0h2m1 0h2M1 20.5h1m4 0h2m2 0h3m1 0h1m1 0h1m3 0h4m2 0h2m4 0h1m3 0h1m1 0h2M1 21.5h3m3 0h1m1 0h2m1 0h2m1 0h2m2 0h1m1 0h2m1 0h3m1 0h1m1 0h6m1 0h4M0 22.5h3m2 0h3m5 0h1m2 0h1m1 0h2m1 0h1m4 0h2m2 0h1m1 0h1m1 0h1m3 0h1M0 23.5h2m2 0h1m4 0h2m1 0h6m3 0h5m2 0h1m4 0h3m1 0h2M0 24.5h4m2 0h1m4 0h2m1 0h1m2 0h3m2 0h1m2 0h2m2 0h1m1 0h1m1 0h1m6 0h1M1 25.5h1m2 0h2m2 0h1m2 0h2m4 0h2m3 0h1m2 0h2m1 0h1m1 0h2m1 0h5m1 0h2M1 26.5h1m2 0h1m1 0h1m1 0h4m1 0h1m1 0h1m1 0h3m2 0h3m2 0h2m3 0h1m1 0h2m3 0h1M1 27.5h3m1 0h1m3 0h1m1 0h2m2 0h1m1 0h1m1 0h2m2 0h3m1 0h2m2 0h4m2 0h1m2 0h1M0 28.5h2m2 0h1m1 0h1m1 0h4m1 0h1m3 0h2m3 0h1m1 0h1m1 0h2m1 0h1m1 0h2m1 0h1m2 0h3M0 29.5h3m1 0h2m1 0h2m1 0h1m1 0h1m2 0h4m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m2 0h1m1 0h2m2 0h2M0 30.5h1m1 0h1m2 0h2m1 0h1m4 0h2m1 0h2m2 0h3m2 0h2m5 0h3m2 0h1m1 0h1M0 31.5h1m1 0h1m1 0h2m1 0h2m2 0h5m1 0h1m1 0h4m5 0h1m4 0h3m1 0h1m2 0h1M0 32.5h1m1 0h2m1 0h4m1 0h2m3 0h2m1 0h1m1 0h3m1 0h3m1 0h2m2 0h5m1 0h1m1 0h1M8 33.5h2m4 0h1m2 0h2m1 0h1m1 0h5m1 0h1m1 0h3m3 0h5M0 34.5h7m3 0h4m4 0h2m1 0h3m1 0h4m1 0h3m1 0h1m1 0h3M0 35.5h1m5 0h1m2 0h2m1 0h2m1 0h2m1 0h2m5 0h1m1 0h1m3 0h2m3 0h2M0 36.5h1m1 0h3m1 0h1m1 0h1m4 0h2m1 0h1m1 0h1m2 0h3m2 0h2m2 0h1m1 0h5m1 0h1m1 0h1M0 37.5h1m1 0h3m1 0h1m1 0h4m1 0h2m1 0h1m3 0h2m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m3 0h2M0 38.5h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h4m1 0h3m5 0h1m3 0h7m1 0h1M0 39.5h1m5 0h1m4 0h4m2 0h1m6 0h2m6 0h1m3 0h1m2 0h1M0 40.5h7m3 0h1m6 0h1m1 0h2m6 0h3m1 0h1m2 0h4"/></svg>
+    <div class="centre"><i><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></i></div>
+  </div>
+  <div class="tail">
+    <b>স্ক্যান করুন → অ্যাপ নামান → অর্ডার দিন</b>
+    <span>ফ্রি অ্যাপ · নো রিস্ক · শুধু অ্যান্ড্রয়েড</span>
+    <span class="url">mamun-akand.github.io/dokan-releases</span>
+  </div>
+</section>
+
 </div>
 <script>
   const only = location.hash.replace('#', '');
-  if (only === 'card' || only === 'poster') document.body.classList.add('only', 'only-' + only);
+  if (only === 'card' || only === 'poster' || only === 'big') document.body.classList.add('only', 'only-' + only);
 </script>
 </body>
 </html>
