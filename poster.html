@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>দোকান পোস্টার</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #14382C; --forest-deep: #0E2A21; --lime: #B5E26B; --lime-soft: #EAF6D3;
+    --paper: #FFFFFF; --ink: #14211B; --muted: #6B7A72; --line: #E6EAE6;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { font-family: "Hind Siliguri", "Noto Sans Bengali", system-ui, sans-serif; color: var(--ink); background: #DDE3DD; padding: 24px 16px 48px; }
+
+  .bar { max-width: 900px; margin: 0 auto 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .bar p { margin: 0; flex: 1 1 260px; color: #35463D; font-size: 14px; }
+  .bar button { font: inherit; font-weight: 600; background: var(--forest); color: #fff; border: 0; border-radius: 10px; padding: 10px 18px; cursor: pointer; }
+  .bar button:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+
+  .sheet { display: flex; flex-direction: column; gap: 32px; align-items: center; }
+
+  /* ---------- A4 poster ---------- */
+  .poster {
+    width: 210mm; height: 297mm; max-width: 100%; aspect-ratio: 210 / 297;
+    background: var(--forest); color: #fff; position: relative; overflow: hidden;
+    display: grid; grid-template-rows: auto auto 1fr auto auto; padding: 14mm 14mm 11mm; gap: 6mm;
+    box-shadow: 0 30px 60px rgba(0,0,0,.28);
+  }
+  .poster::before { content: ""; position: absolute; inset: auto -30mm -60mm auto; width: 130mm; height: 130mm; border-radius: 50%; background: var(--forest-deep); }
+  .poster > * { position: relative; }
+
+  .brand { display: flex; align-items: center; gap: 4mm; }
+  .mark { width: 14mm; height: 14mm; border-radius: 4mm; background: var(--lime); display: grid; place-items: center; flex: none; }
+  .mark svg { width: 8.5mm; height: 8.5mm; fill: none; stroke: var(--forest); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .brand b { font-size: 10mm; font-weight: 700; line-height: 1; letter-spacing: .01em; }
+  .brand span { display: block; font-size: 4mm; color: var(--lime); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; margin-top: 1mm; }
+
+  .head h1 { margin: 0; font-size: 17mm; line-height: 1.12; font-weight: 700; text-wrap: balance; }
+  .head p { margin: 2mm 0 0; font-size: 6.2mm; color: var(--lime-soft); font-weight: 500; }
+  .head p em { font-style: normal; color: var(--lime); font-weight: 700; }
+
+  .scan { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8mm; }
+  .qr-card { background: var(--paper); border-radius: 8mm; padding: 7mm; width: 92mm; justify-self: end; box-shadow: 0 12mm 24mm rgba(0,0,0,.25); }
+  .qr { position: relative; width: 78mm; height: 78mm; }
+  .qr svg.code { width: 100%; height: 100%; display: block; }
+  .qr .centre { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); width: 17mm; height: 17mm; border-radius: 4mm; background: var(--paper); display: grid; place-items: center; }
+  .qr .centre i { width: 13mm; height: 13mm; border-radius: 3.2mm; background: var(--lime); display: grid; place-items: center; }
+  .qr .centre svg { width: 8mm; height: 8mm; fill: none; stroke: var(--forest); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .qr-card small { display: block; margin-top: 4mm; text-align: center; color: var(--muted); font-size: 3.6mm; font-weight: 500; }
+
+  .pitch { display: grid; gap: 5mm; align-self: center; }
+  .pitch .big { font-size: 8mm; font-weight: 700; line-height: 1.2; text-wrap: balance; }
+  .pitch ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 2.5mm; font-size: 4.8mm; color: var(--lime-soft); }
+  .pitch li { display: flex; align-items: center; gap: 2.5mm; }
+  .pitch li::before { content: ""; width: 2.4mm; height: 2.4mm; border-radius: 50%; background: var(--lime); flex: none; }
+
+  .steps { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; gap: 3mm; }
+  .step { background: var(--paper); color: var(--ink); border-radius: 6mm; padding: 5mm 4mm 4.5mm; display: grid; grid-template-rows: auto auto auto auto; justify-items: center; text-align: center; gap: 1.5mm; }
+  .step .n { width: 9mm; height: 9mm; border-radius: 50%; background: var(--lime); color: var(--forest); font-weight: 700; font-size: 5.2mm; display: grid; place-items: center; line-height: 1; }
+  .step svg { width: 12mm; height: 12mm; fill: none; stroke: var(--forest); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; margin-top: 1mm; }
+  .step b { font-size: 6.4mm; font-weight: 700; line-height: 1.15; }
+  .step b small { display: block; font-size: 3.7mm; font-weight: 600; color: var(--forest); background: var(--lime-soft); border-radius: 99px; padding: .6mm 2.6mm; margin-top: 1.2mm; }
+  .step .hint { margin: 0; font-size: 3.6mm; color: var(--muted); line-height: 1.35; }
+  .arrow { align-self: center; color: var(--lime); font-size: 9mm; line-height: 1; }
+
+  .foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 6mm; font-size: 3.6mm; color: var(--lime-soft); }
+  .foot .url { font-weight: 600; color: #fff; font-size: 4.1mm; letter-spacing: .01em; word-break: break-all; }
+  .foot .note { text-align: right; max-width: 82mm; line-height: 1.4; }
+
+  /* ---------- square card (WhatsApp / counter) ---------- */
+  .card {
+    width: 190mm; height: 190mm; max-width: 100%; aspect-ratio: 1;
+    background: var(--paper); color: var(--ink); position: relative; overflow: hidden;
+    display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr auto; padding: 12mm; gap: 6mm 8mm;
+    box-shadow: 0 30px 60px rgba(0,0,0,.2);
+  }
+  .card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 10mm; background: var(--forest); }
+  .card > * { position: relative; }
+  .card .brand { grid-column: 1 / -1; margin-top: 10mm; color: var(--ink); }
+  .card .brand span { color: var(--forest); }
+  .card .h { display: grid; gap: 4mm; align-content: center; }
+  .card .h h2 { margin: 0; font-size: 12.5mm; line-height: 1.15; font-weight: 700; color: var(--forest); text-wrap: balance; }
+  .card .h p { margin: 0; font-size: 5.4mm; color: var(--muted); font-weight: 500; }
+  .card .qr-card { background: var(--lime-soft); box-shadow: none; width: 78mm; padding: 5mm; align-self: center; }
+  .card .qr { width: 68mm; height: 68mm; }
+  .card .qr .centre { background: var(--lime-soft); }
+  .card .qr-card small { color: var(--forest); }
+  .card .steps { grid-column: 1 / -1; gap: 2.5mm; }
+  .card .step { background: var(--forest); color: #fff; padding: 4mm 3mm; gap: 1mm; }
+  .card .step svg { stroke: var(--lime); width: 9mm; height: 9mm; }
+  .card .step b { font-size: 5.6mm; }
+  .card .step b small { background: var(--lime); color: var(--forest); }
+  .card .step .hint { color: var(--lime-soft); font-size: 3.3mm; }
+  .card .arrow { color: var(--forest); }
+
+  /* #card / #poster in the URL shows that one piece edge to edge - used to render PNGs. */
+  body.only { padding: 0; background: var(--paper); }
+  body.only .bar, body.only-card .poster, body.only-poster .card { display: none; }
+  body.only .sheet { gap: 0; }
+  body.only .card, body.only .poster { box-shadow: none; max-width: none; }
+  body.only-card .card { width: 100vw; height: 100vw; }
+  body.only-poster .poster { width: 100vw; height: calc(100vw * 297 / 210); }
+
+  @media (max-width: 640px) {
+    .poster, .card { box-shadow: 0 12px 30px rgba(0,0,0,.2); }
+  }
+  @media print {
+    @page { size: A4; margin: 0; }
+    body { background: #fff; padding: 0; }
+    .bar { display: none; }
+    .sheet { gap: 0; }
+    .poster, .card { box-shadow: none; break-after: page; max-width: none; }
+    .card { margin: 10mm auto 0; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="bar">
+  <p>এ৪ পোস্টার (দেয়াল/কাউন্টার) আর চৌকো কার্ড (হোয়াটসঅ্যাপ/ফেসবুক)। প্রিন্টে রং রাখতে "Background graphics" চালু রাখুন।</p>
+  <button type="button" id="print" onclick="window.print()">প্রিন্ট / PDF</button>
+</div>
+
+<div class="sheet">
+
+<section class="poster" aria-label="Dokan A4 poster">
+  <div class="brand">
+    <div class="mark"><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></div>
+    <div><b>দোকান</b><span>Dokan · Android app</span></div>
+  </div>
+
+  <div class="head">
+    <h1>আপনার দোকান,<br>আপনার পকেটে।</h1>
+    <p>ঘরে বসে অর্ডার করুন — <em>ফ্রি অ্যাপ, নো রিস্ক</em></p>
+  </div>
+
+  <div class="scan">
+    <div class="pitch">
+      <div class="big">ক্যামেরা খুলে<br>কোডটি স্ক্যান করুন</div>
+      <ul>
+        <li>পুরো ক্যাটালগ, ছবিসহ দাম</li>
+        <li>বাংলা ও ইংরেজি — দুটোই</li>
+        <li>অর্ডারের খবর সরাসরি ফোনে</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <div class="qr">
+        <svg class="code" viewBox="0 0 41 41" shape-rendering="crispEdges" role="img" aria-label="QR code to the Dokan download page"><path stroke="#14382C" d="M0 0.5h7m1 0h1m1 0h1m1 0h1m3 0h1m2 0h1m1 0h2m2 0h2m1 0h1m1 0h3m1 0h7M0 1.5h1m5 0h1m1 0h1m1 0h2m4 0h3m2 0h3m1 0h4m1 0h1m1 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h2m2 0h5m1 0h3m1 0h2m3 0h1m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m2 0h3m1 0h4m1 0h1m2 0h4m1 0h2m2 0h1m3 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m4 0h1m1 0h1m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m1 0h1m1 0h3m7 0h3m4 0h2m5 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h5m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m2 0h1m4 0h1M2 8.5h3m1 0h1m1 0h1m1 0h6m2 0h1m1 0h1m2 0h3m3 0h1m3 0h3m2 0h3M0 9.5h3m1 0h1m5 0h2m5 0h1m1 0h5m5 0h8m1 0h2M0 10.5h1m1 0h1m1 0h3m1 0h1m1 0h1m6 0h1m6 0h1m1 0h2m2 0h1m1 0h2m1 0h2m2 0h1M0 11.5h1m3 0h2m3 0h1m1 0h1m1 0h5m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h3m3 0h2m2 0h1M0 12.5h1m1 0h5m1 0h3m3 0h2m1 0h2m2 0h1m1 0h4m1 0h2m1 0h1m1 0h1m3 0h2m1 0h1M4 13.5h2m4 0h2m1 0h1m3 0h2m1 0h1m1 0h3m2 0h1m1 0h1m2 0h1m3 0h1m1 0h3M0 14.5h3m1 0h1m1 0h4m1 0h1m3 0h1m1 0h1m3 0h4m2 0h2m2 0h1m1 0h1m2 0h3M0 15.5h1m2 0h1m3 0h1m1 0h2m1 0h2m6 0h1m1 0h1m1 0h1m1 0h2m2 0h3m1 0h4m2 0h1M3 16.5h2m1 0h1m1 0h1m2 0h2m1 0h3m1 0h6m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1M1 17.5h3m1 0h1m1 0h1m2 0h1m1 0h2m1 0h5m1 0h3m1 0h1m2 0h5m1 0h4m1 0h2M0 18.5h2m3 0h2m4 0h1m2 0h1m1 0h1m1 0h1m1 0h1m3 0h1m2 0h3m4 0h1m1 0h1M0 19.5h1m1 0h2m1 0h1m1 0h2m1 0h2m3 0h1m2 0h2m1 0h1m2 0h2m3 0h3m1 0h2m1 0h2M1 20.5h1m4 0h2m2 0h3m1 0h1m1 0h1m3 0h4m2 0h2m4 0h1m3 0h1m1 0h2M1 21.5h3m3 0h1m1 0h2m1 0h2m1 0h2m2 0h1m1 0h2m1 0h3m1 0h1m1 0h6m1 0h4M0 22.5h3m2 0h3m5 0h1m2 0h1m1 0h2m1 0h1m4 0h2m2 0h1m1 0h1m1 0h1m3 0h1M0 23.5h2m2 0h1m4 0h2m1 0h6m3 0h5m2 0h1m4 0h3m1 0h2M0 24.5h4m2 0h1m4 0h2m1 0h1m2 0h3m2 0h1m2 0h2m2 0h1m1 0h1m1 0h1m6 0h1M1 25.5h1m2 0h2m2 0h1m2 0h2m4 0h2m3 0h1m2 0h2m1 0h1m1 0h2m1 0h5m1 0h2M1 26.5h1m2 0h1m1 0h1m1 0h4m1 0h1m1 0h1m1 0h3m2 0h3m2 0h2m3 0h1m1 0h2m3 0h1M1 27.5h3m1 0h1m3 0h1m1 0h2m2 0h1m1 0h1m1 0h2m2 0h3m1 0h2m2 0h4m2 0h1m2 0h1M0 28.5h2m2 0h1m1 0h1m1 0h4m1 0h1m3 0h2m3 0h1m1 0h1m1 0h2m1 0h1m1 0h2m1 0h1m2 0h3M0 29.5h3m1 0h2m1 0h2m1 0h1m1 0h1m2 0h4m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m2 0h1m1 0h2m2 0h2M0 30.5h1m1 0h1m2 0h2m1 0h1m4 0h2m1 0h2m2 0h3m2 0h2m5 0h3m2 0h1m1 0h1M0 31.5h1m1 0h1m1 0h2m1 0h2m2 0h5m1 0h1m1 0h4m5 0h1m4 0h3m1 0h1m2 0h1M0 32.5h1m1 0h2m1 0h4m1 0h2m3 0h2m1 0h1m1 0h3m1 0h3m1 0h2m2 0h5m1 0h1m1 0h1M8 33.5h2m4 0h1m2 0h2m1 0h1m1 0h5m1 0h1m1 0h3m3 0h5M0 34.5h7m3 0h4m4 0h2m1 0h3m1 0h4m1 0h3m1 0h1m1 0h3M0 35.5h1m5 0h1m2 0h2m1 0h2m1 0h2m1 0h2m5 0h1m1 0h1m3 0h2m3 0h2M0 36.5h1m1 0h3m1 0h1m1 0h1m4 0h2m1 0h1m1 0h1m2 0h3m2 0h2m2 0h1m1 0h5m1 0h1m1 0h1M0 37.5h1m1 0h3m1 0h1m1 0h4m1 0h2m1 0h1m3 0h2m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m3 0h2M0 38.5h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h4m1 0h3m5 0h1m3 0h7m1 0h1M0 39.5h1m5 0h1m4 0h4m2 0h1m6 0h2m6 0h1m3 0h1m2 0h1M0 40.5h7m3 0h1m6 0h1m1 0h2m6 0h3m1 0h1m2 0h4"/></svg>
+        <div class="centre"><i><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></i></div>
+      </div>
+      <small>স্ক্যান → ডাউনলোড পেজ</small>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step"><span class="n">১</span><svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M3 12h18"/></svg><b>স্ক্যান</b><p class="hint">ক্যামেরা তাক করুন, লিংকে ট্যাপ</p></div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">২</span><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><b>ডাউনলোড<small>নো রিস্ক</small></b><p class="hint">"Download anyway" চাপুন, তারপর Install</p></div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">৩</span><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 9.6a2 2 0 0 1-2 1.4H8.2a2 2 0 0 1-2-1.4L5 8zM9 8V6a3 3 0 0 1 6 0v2"/></svg><b>অর্ডার</b><p class="hint">পছন্দ বেছে বাস্কেটে, ঠিকানা দিন — শেষ</p></div>
+  </div>
+
+  <div class="foot">
+    <div class="url">mamun-akand.github.io/dokan-releases</div>
+    <div class="note">ফোন "এই উৎস থেকে অনুমতি দিন" জিজ্ঞেস করলে চালু করে দিন — একবারই। শুধু অ্যান্ড্রয়েড।</div>
+  </div>
+</section>
+
+<section class="card" aria-label="Dokan square card">
+  <div class="brand">
+    <div class="mark"><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></div>
+    <div><b>দোকান</b><span>Dokan · Android app</span></div>
+  </div>
+  <div class="h">
+    <h2>স্ক্যান করুন,<br>অ্যাপ নামান,<br>অর্ডার দিন।</h2>
+    <p>ফ্রি অ্যাপ · নো রিস্ক · বাংলায়</p>
+  </div>
+  <div class="qr-card">
+    <div class="qr">
+      <svg class="code" viewBox="0 0 41 41" shape-rendering="crispEdges" role="img" aria-label="QR code to the Dokan download page"><path stroke="#14382C" d="M0 0.5h7m1 0h1m1 0h1m1 0h1m3 0h1m2 0h1m1 0h2m2 0h2m1 0h1m1 0h3m1 0h7M0 1.5h1m5 0h1m1 0h1m1 0h2m4 0h3m2 0h3m1 0h4m1 0h1m1 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h2m2 0h5m1 0h3m1 0h2m3 0h1m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m2 0h3m1 0h4m1 0h1m2 0h4m1 0h2m2 0h1m3 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m4 0h1m1 0h1m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m1 0h1m1 0h3m7 0h3m4 0h2m5 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h5m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m2 0h1m4 0h1M2 8.5h3m1 0h1m1 0h1m1 0h6m2 0h1m1 0h1m2 0h3m3 0h1m3 0h3m2 0h3M0 9.5h3m1 0h1m5 0h2m5 0h1m1 0h5m5 0h8m1 0h2M0 10.5h1m1 0h1m1 0h3m1 0h1m1 0h1m6 0h1m6 0h1m1 0h2m2 0h1m1 0h2m1 0h2m2 0h1M0 11.5h1m3 0h2m3 0h1m1 0h1m1 0h5m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h3m3 0h2m2 0h1M0 12.5h1m1 0h5m1 0h3m3 0h2m1 0h2m2 0h1m1 0h4m1 0h2m1 0h1m1 0h1m3 0h2m1 0h1M4 13.5h2m4 0h2m1 0h1m3 0h2m1 0h1m1 0h3m2 0h1m1 0h1m2 0h1m3 0h1m1 0h3M0 14.5h3m1 0h1m1 0h4m1 0h1m3 0h1m1 0h1m3 0h4m2 0h2m2 0h1m1 0h1m2 0h3M0 15.5h1m2 0h1m3 0h1m1 0h2m1 0h2m6 0h1m1 0h1m1 0h1m1 0h2m2 0h3m1 0h4m2 0h1M3 16.5h2m1 0h1m1 0h1m2 0h2m1 0h3m1 0h6m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1M1 17.5h3m1 0h1m1 0h1m2 0h1m1 0h2m1 0h5m1 0h3m1 0h1m2 0h5m1 0h4m1 0h2M0 18.5h2m3 0h2m4 0h1m2 0h1m1 0h1m1 0h1m1 0h1m3 0h1m2 0h3m4 0h1m1 0h1M0 19.5h1m1 0h2m1 0h1m1 0h2m1 0h2m3 0h1m2 0h2m1 0h1m2 0h2m3 0h3m1 0h2m1 0h2M1 20.5h1m4 0h2m2 0h3m1 0h1m1 0h1m3 0h4m2 0h2m4 0h1m3 0h1m1 0h2M1 21.5h3m3 0h1m1 0h2m1 0h2m1 0h2m2 0h1m1 0h2m1 0h3m1 0h1m1 0h6m1 0h4M0 22.5h3m2 0h3m5 0h1m2 0h1m1 0h2m1 0h1m4 0h2m2 0h1m1 0h1m1 0h1m3 0h1M0 23.5h2m2 0h1m4 0h2m1 0h6m3 0h5m2 0h1m4 0h3m1 0h2M0 24.5h4m2 0h1m4 0h2m1 0h1m2 0h3m2 0h1m2 0h2m2 0h1m1 0h1m1 0h1m6 0h1M1 25.5h1m2 0h2m2 0h1m2 0h2m4 0h2m3 0h1m2 0h2m1 0h1m1 0h2m1 0h5m1 0h2M1 26.5h1m2 0h1m1 0h1m1 0h4m1 0h1m1 0h1m1 0h3m2 0h3m2 0h2m3 0h1m1 0h2m3 0h1M1 27.5h3m1 0h1m3 0h1m1 0h2m2 0h1m1 0h1m1 0h2m2 0h3m1 0h2m2 0h4m2 0h1m2 0h1M0 28.5h2m2 0h1m1 0h1m1 0h4m1 0h1m3 0h2m3 0h1m1 0h1m1 0h2m1 0h1m1 0h2m1 0h1m2 0h3M0 29.5h3m1 0h2m1 0h2m1 0h1m1 0h1m2 0h4m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m2 0h1m1 0h2m2 0h2M0 30.5h1m1 0h1m2 0h2m1 0h1m4 0h2m1 0h2m2 0h3m2 0h2m5 0h3m2 0h1m1 0h1M0 31.5h1m1 0h1m1 0h2m1 0h2m2 0h5m1 0h1m1 0h4m5 0h1m4 0h3m1 0h1m2 0h1M0 32.5h1m1 0h2m1 0h4m1 0h2m3 0h2m1 0h1m1 0h3m1 0h3m1 0h2m2 0h5m1 0h1m1 0h1M8 33.5h2m4 0h1m2 0h2m1 0h1m1 0h5m1 0h1m1 0h3m3 0h5M0 34.5h7m3 0h4m4 0h2m1 0h3m1 0h4m1 0h3m1 0h1m1 0h3M0 35.5h1m5 0h1m2 0h2m1 0h2m1 0h2m1 0h2m5 0h1m1 0h1m3 0h2m3 0h2M0 36.5h1m1 0h3m1 0h1m1 0h1m4 0h2m1 0h1m1 0h1m2 0h3m2 0h2m2 0h1m1 0h5m1 0h1m1 0h1M0 37.5h1m1 0h3m1 0h1m1 0h4m1 0h2m1 0h1m3 0h2m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m3 0h2M0 38.5h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h4m1 0h3m5 0h1m3 0h7m1 0h1M0 39.5h1m5 0h1m4 0h4m2 0h1m6 0h2m6 0h1m3 0h1m2 0h1M0 40.5h7m3 0h1m6 0h1m1 0h2m6 0h3m1 0h1m2 0h4"/></svg>
+      <div class="centre"><i><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></i></div>
+    </div>
+    <small>mamun-akand.github.io/dokan-releases</small>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="n">১</span><svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M3 12h18"/></svg><b>স্ক্যান</b><p class="hint">ক্যামেরা তাক করুন</p></div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">২</span><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><b>ডাউনলোড<small>নো রিস্ক</small></b><p class="hint">Download anyway → Install</p></div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">৩</span><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 9.6a2 2 0 0 1-2 1.4H8.2a2 2 0 0 1-2-1.4L5 8zM9 8V6a3 3 0 0 1 6 0v2"/></svg><b>অর্ডার</b><p class="hint">বাস্কেট → ঠিকানা → শেষ</p></div>
+  </div>
+</section>
+
+</div>
+<script>
+  const only = location.hash.replace('#', '');
+  if (only === 'card' || only === 'poster') document.body.classList.add('only', 'only-' + only);
+</script>
+</body>
+</html>
