@@ -2,7 +2,7 @@
   "version": "1.2.0",
   "build": 3,
   "minBuild": 0,
-  "notes": "ci(release): Firebase config as a base64 secret - JSON does not survive the Windows argument line",
+  "notes": "Updates now arrive inside the app - one tap to install.\n\nআপডেট এখন অ্যাপের ভেতরেই আসবে - এক ট্যাপে ইনস্টল।",
   "date": "2026-09-16",
   "apk": {
     "arm64": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.2.0/Dokan-arm64.apk",
