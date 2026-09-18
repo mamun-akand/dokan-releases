@@ -1,0 +1,18 @@
+# Keeps the free App Service from unloading between visits: a request every few minutes is enough,
+# and /health never touches the database, so the free database quota is not spent. Lives in this
+# public repo because scheduled workflows here cost nothing.
+name: Keep the shop warm
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the API
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 60 https://dokan-service.azurewebsites.net/health || echo 000)
+          echo "health -> $code"
