@@ -1,11 +1,11 @@
 {
-  "version": "1.3.0",
-  "build": 4,
+  "version": "1.3.1",
+  "build": 5,
   "minBuild": 4,
-  "notes": "The shop opens the moment you tap it, with the whole catalogue inside - 1,100+ items with pictures, best-sellers first, and filters that answer at once. New orders ring loud even when the app is closed. The bag moves out of your way, adding is one tap under your thumb, and Bengali reads properly everywhere.\n\nট্যাপ করার সঙ্গে সঙ্গেই দোকান খোলে, পুরো তালিকা এখন ভেতরেই - ছবিসহ ১,১০০+ পণ্য, আগে বেশি বিক্রির পণ্য, আর ফিল্টার সঙ্গে সঙ্গে কাজ করে। অ্যাপ বন্ধ থাকলেও নতুন অর্ডার এলে জোরে বাজে। ব্যাগ সরিয়ে নেওয়া যায়, আঙুলের নিচেই এক ট্যাপে যোগ করা যায়, আর সব বাংলা ঠিকভাবে দেখায়।",
-  "date": "2026-09-23",
+  "notes": "A new look: the shop's own logo is now the app icon on your home screen — an orange trolley of groceries over দোকান. Nothing else has changed.\n\nনতুন চেহারা: দোকানের নিজের লোগো এখন আপনার হোম স্ক্রিনের অ্যাপ আইকন — কমলা ট্রলিভরা বাজার আর তার নিচে দোকান। আর কিছু বদলায়নি।",
+  "date": "2026-09-24",
   "apk": {
-    "arm64": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.0/Dokan-arm64.apk",
-    "arm32": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.0/Dokan-arm32.apk"
+    "arm64": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.1/Dokan-arm64.apk",
+    "arm32": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.1/Dokan-arm32.apk"
   }
 }
