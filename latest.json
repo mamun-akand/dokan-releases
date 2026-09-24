@@ -1,11 +1,11 @@
 {
-  "version": "1.3.1",
-  "build": 5,
+  "version": "1.3.2",
+  "build": 6,
   "minBuild": 4,
-  "notes": "A new look: the shop's own logo is now the app icon on your home screen — an orange trolley of groceries over দোকান. Nothing else has changed.\n\nনতুন চেহারা: দোকানের নিজের লোগো এখন আপনার হোম স্ক্রিনের অ্যাপ আইকন — কমলা ট্রলিভরা বাজার আর তার নিচে দোকান। আর কিছু বদলায়নি।",
+  "notes": "New orders now ring like a phone call - the screen lights up and it keeps ringing until you open it or stop it.\nScan a barcode to add an item. Search finds items in Bangla, English or Banglish.\nApp update under More, new green icon, new cart button.\n\nনতুন অর্ডার এখন ফোন কলের মতো বাজবে - স্ক্রিন জ্বলে উঠবে, খোলা বা বন্ধ না করা পর্যন্ত বাজতে থাকবে।\nবারকোড স্ক্যান করে পণ্য যোগ করুন। বাংলা, ইংরেজি বা বাংলিশে লিখে পণ্য খুঁজুন।\nMore-এ অ্যাপ আপডেট, নতুন সবুজ আইকন, নতুন কার্ট বাটন।",
   "date": "2026-09-24",
   "apk": {
-    "arm64": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.1/Dokan-arm64.apk",
-    "arm32": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.1/Dokan-arm32.apk"
+    "arm64": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.2/Dokan-arm64.apk",
+    "arm32": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.2/Dokan-arm32.apk"
   }
 }

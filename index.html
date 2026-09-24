@@ -59,7 +59,7 @@
     document.querySelectorAll('[data-en]').forEach(el => el.textContent = el.dataset[lang]);
     document.getElementById('lang').textContent = lang === 'en' ? 'বাংলা' : 'English';
     if (latest) {
-      const v = lang === 'en' ? `Version ${latest.version} · ${latest.date}` : `সংস্করণ ${bn(latest.version)} · ${bn(latest.date)}`;
+      const v = lang === 'en' ? `Version ${latest.version} · ${latest.date}` : `সংস্করণ ${latest.version} · ${bn(latest.date)}`;
       document.getElementById('version').textContent = v;
     }
   }
