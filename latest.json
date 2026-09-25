@@ -1,11 +1,11 @@
 {
-  "version": "1.3.3",
-  "build": 7,
+  "version": "1.3.4",
+  "build": 8,
   "minBuild": 4,
-  "notes": "See every shop on a map - nearest first. Tap the location pin at the top, then Near me.\nGet directions or call a shop in one tap. Shop owners can place their shop on the map from More > Branches.\nA smaller app to download.\n\nসব দোকান এখন ম্যাপে - কাছেরটা আগে। উপরের লোকেশন পিনে চাপুন, তারপর \"আমার কাছে\"।\nএক চাপে পথ দেখুন বা দোকানে ফোন করুন। দোকানের মালিক More > শাখা থেকে ম্যাপে দোকানের জায়গা দিতে পারবেন।\nঅ্যাপটি এখন আরও ছোট, দ্রুত ডাউনলোড হয়।",
+  "notes": "You stay signed in now - no more \"Too many attempts\" or being signed out by itself.\nScanning reads the right barcode on the pack and finds the item the shop already has.\nOffers shows every reduced item, biggest saving first. Brand, unit and category can be searched when adding an item.\n\nএখন আর নিজে থেকে সাইন আউট হবে না, \"Too many attempts\" বার্তাও আসবে না।\nস্ক্যান করলে প্যাকেটের সঠিক বারকোড পড়বে এবং দোকানে আগে থেকে থাকা পণ্য খুঁজে দেবে।\nঅফারে সব কম দামের পণ্য দেখাবে, বেশি ছাড় আগে। পণ্য যোগ করার সময় ব্র্যান্ড, একক ও ক্যাটাগরি খুঁজে নেওয়া যাবে।",
   "date": "2026-09-25",
   "apk": {
-    "arm64": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.3/Dokan-arm64.apk",
-    "arm32": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.3/Dokan-arm32.apk"
+    "arm64": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.4/Dokan-arm64.apk",
+    "arm32": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.4/Dokan-arm32.apk"
   }
 }
