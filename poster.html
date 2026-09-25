@@ -103,6 +103,45 @@
   body.only .card, body.only .poster, body.only .qrsheet { box-shadow: none; max-width: none; }
   body.only-card .card { width: 100vw; height: 100vw; }
   body.only-poster .poster { width: 100vw; height: calc(100vw * 297 / 210); }
+  body.only-guard .poster, body.only-guard .card, body.only-guard .qrsheet { display: none; }
+  body.only-card .guard, body.only-poster .guard, body.only-qrsheet .guard { display: none; }
+  body.only .guard { box-shadow: none; max-width: none; }
+  body.only-guard .guard { zoom: 1.5039; }
+
+  /* ---------- square card: the screen Android shows a brand-new app ---------- */
+  .guard {
+    width: 190mm; height: 190mm; max-width: 100%; aspect-ratio: 1;
+    background: var(--paper); color: var(--ink); position: relative; overflow: hidden;
+    display: grid; grid-template-rows: auto auto 1fr auto; padding: 12mm; gap: 5mm;
+    box-shadow: 0 30px 60px rgba(0,0,0,.2);
+  }
+  .guard::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 10mm; background: var(--forest); }
+  .guard > * { position: relative; }
+  .guard .brand { margin-top: 10mm; color: var(--ink); }
+  .guard .brand span { color: var(--forest); }
+  .guard .h h2 { margin: 0; font-size: 11mm; line-height: 1.14; font-weight: 700; color: var(--forest); text-wrap: balance; }
+  .guard .h p { margin: 2.5mm 0 0; font-size: 5mm; color: var(--muted); font-weight: 500; }
+  .guard .body { display: grid; grid-template-columns: 82mm 1fr; gap: 7mm; align-items: center; }
+
+  .mock { background: #F2F4F7; border: 0.6mm solid var(--line); border-radius: 6mm; padding: 6mm 5mm; display: grid; gap: 3mm; justify-items: center; text-align: center; }
+  .mock .pp { display: flex; align-items: center; gap: 1.6mm; color: #5F6368; font-size: 3.4mm; font-weight: 600; }
+  .mock .pp svg { width: 4mm; height: 4mm; fill: none; stroke: #5F6368; stroke-width: 2; }
+  .mock .title { font-size: 4.6mm; font-weight: 700; color: #202124; line-height: 1.25; }
+  .mock .app { background: #fff; border-radius: 3mm; padding: 3mm 4mm; display: flex; align-items: center; gap: 2.5mm; width: 100%; }
+  .mock .app i { width: 8mm; height: 8mm; border-radius: 2.2mm; background: var(--forest); display: grid; place-items: center; flex: none; }
+  .mock .app i svg { width: 5mm; height: 5mm; fill: none; stroke: var(--lime); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .mock .app b { font-size: 4.4mm; font-weight: 600; color: #202124; }
+  .mock .more { width: 100%; background: var(--lime); color: var(--forest); border-radius: 2.6mm; padding: 2.6mm 3mm; font-size: 4.2mm; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 2mm; box-shadow: 0 0 0 1.4mm var(--lime-soft); }
+  .mock .more span { font-size: 4.6mm; }
+  .mock .down { color: var(--forest); font-size: 5mm; line-height: 1; }
+  .mock .go { width: 100%; background: var(--forest); color: #fff; border-radius: 2.6mm; padding: 3mm; font-size: 4.4mm; font-weight: 700; }
+
+  .guard .two { display: grid; gap: 4mm; align-content: center; }
+  .guard .two .row { display: grid; grid-template-columns: auto 1fr; gap: 3.5mm; align-items: start; }
+  .guard .two .n { width: 9mm; height: 9mm; border-radius: 50%; background: var(--lime); color: var(--forest); font-size: 4.8mm; font-weight: 700; display: grid; place-items: center; flex: none; }
+  .guard .two b { display: block; font-size: 5.6mm; font-weight: 700; color: var(--forest); line-height: 1.2; }
+  .guard .two p { margin: 0.8mm 0 0; font-size: 4.2mm; color: var(--muted); font-weight: 500; line-height: 1.35; }
+  .guard .foot { background: var(--lime-soft); border-radius: 4mm; padding: 4.5mm 6mm; text-align: center; font-size: 4.6mm; font-weight: 600; color: var(--forest); }
 
 
   /* ---------- A4 scan-from-far sheet ---------- */
@@ -219,6 +258,32 @@
 </section>
 
 
+<section class="guard" aria-label="Dokan Play Protect card">
+  <div class="brand">
+    <div class="mark"><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></div>
+    <div><b>দোকান</b><span>Dokan · Android app</span></div>
+  </div>
+  <div class="h">
+    <h2>“App blocked” লেখা এলে?</h2>
+    <p>অ্যাপটি একদম নতুন, তাই Google এখনো চেনে না। দুই ট্যাপেই ইনস্টল হয়ে যাবে।</p>
+  </div>
+  <div class="body">
+    <div class="mock">
+      <div class="pp"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/></svg>Google Play Protect</div>
+      <div class="title">App blocked to<br>protect your device</div>
+      <div class="app"><i><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></i><b>Dokan</b></div>
+      <div class="more">More details <span>⌄</span></div>
+      <div class="down">↓</div>
+      <div class="go">Install anyway</div>
+    </div>
+    <div class="two">
+      <div class="row"><span class="n">১</span><div><b>More details</b><p>ছোট লেখাটিতে ট্যাপ করুন</p></div></div>
+      <div class="row"><span class="n">২</span><div><b>Install anyway</b><p>ইনস্টল শুরু হয়ে যাবে</p></div></div>
+    </div>
+  </div>
+  <div class="foot">আপনার দোকানের নিজের অ্যাপ · নিরাপদ ✅</div>
+</section>
+
 <section class="qrsheet" aria-label="Dokan large QR sheet">
   <div class="brand">
     <div class="mark"><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></div>
@@ -238,7 +303,7 @@
 </div>
 <script>
   const only = location.hash.replace('#', '');
-  if (only === 'card' || only === 'poster' || only === 'qrsheet') document.body.classList.add('only', 'only-' + only);
+  if (only === 'card' || only === 'poster' || only === 'qrsheet' || only === 'guard') document.body.classList.add('only', 'only-' + only);
 </script>
 </body>
 </html>
