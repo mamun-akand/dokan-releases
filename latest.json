@@ -1,11 +1,11 @@
 {
-  "version": "1.3.4",
-  "build": 8,
+  "version": "1.3.5",
+  "build": 9,
   "minBuild": 4,
-  "notes": "You stay signed in now - no more \"Too many attempts\" or being signed out by itself.\nScanning reads the right barcode on the pack and finds the item the shop already has.\nOffers shows every reduced item, biggest saving first. Brand, unit and category can be searched when adding an item.\n\nএখন আর নিজে থেকে সাইন আউট হবে না, \"Too many attempts\" বার্তাও আসবে না।\nস্ক্যান করলে প্যাকেটের সঠিক বারকোড পড়বে এবং দোকানে আগে থেকে থাকা পণ্য খুঁজে দেবে।\nঅফারে সব কম দামের পণ্য দেখাবে, বেশি ছাড় আগে। পণ্য যোগ করার সময় ব্র্যান্ড, একক ও ক্যাটাগরি খুঁজে নেওয়া যাবে।",
-  "date": "2026-09-25",
+  "notes": "Dokan 1.3.5\n\n- Scan a pack: the item opens already filled in with the best details every source agrees on - name, size, brand and picture - and the app points out anything that looks wrong, with a one-tap fix.\n- Customers can ask for items the shop does not list, change or re-open their own order, and order again.\n- Staff can sell at the counter with a PDF invoice.\n\nদোকান ১.৩.৫\n\n- প্যাক স্ক্যান করলেই পণ্যের নাম, সাইজ, ব্র্যান্ড ও ছবি সব উৎস মিলিয়ে সবচেয়ে সঠিক তথ্য দিয়ে পূরণ হয়ে যায় - কিছু ভুল মনে হলে অ্যাপ দেখিয়ে দেয়, এক ট্যাপেই ঠিক করা যায়।\n- ক্রেতারা তালিকায় নেই এমন পণ্য চাইতে পারেন, নিজের অর্ডার বদলাতে বা আবার চালু করতে পারেন, আবার অর্ডার করতে পারেন।\n- দোকানের কর্মীরা কাউন্টারে বিক্রি করে PDF ইনভয়েস দিতে পারেন।",
+  "date": "2026-09-27",
   "apk": {
-    "arm64": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.4/Dokan-arm64.apk",
-    "arm32": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.4/Dokan-arm32.apk"
+    "arm64": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.5/Dokan-arm64.apk",
+    "arm32": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.5/Dokan-arm32.apk"
   }
 }
