@@ -1,11 +1,11 @@
 {
-  "version": "1.3.5",
-  "build": 9,
+  "version": "1.3.6",
+  "build": 2010,
   "minBuild": 4,
-  "notes": "Dokan 1.3.5\n\n- Scan a pack: the item opens already filled in with the best details every source agrees on - name, size, brand and picture - and the app points out anything that looks wrong, with a one-tap fix.\n- Customers can ask for items the shop does not list, change or re-open their own order, and order again.\n- Staff can sell at the counter with a PDF invoice.\n\nদোকান ১.৩.৫\n\n- প্যাক স্ক্যান করলেই পণ্যের নাম, সাইজ, ব্র্যান্ড ও ছবি সব উৎস মিলিয়ে সবচেয়ে সঠিক তথ্য দিয়ে পূরণ হয়ে যায় - কিছু ভুল মনে হলে অ্যাপ দেখিয়ে দেয়, এক ট্যাপেই ঠিক করা যায়।\n- ক্রেতারা তালিকায় নেই এমন পণ্য চাইতে পারেন, নিজের অর্ডার বদলাতে বা আবার চালু করতে পারেন, আবার অর্ডার করতে পারেন।\n- দোকানের কর্মীরা কাউন্টারে বিক্রি করে PDF ইনভয়েস দিতে পারেন।",
-  "date": "2026-09-27",
+  "notes": "Dokan 1.3.6\n\n- New sale works like a real till: scan or search, pick the customer or walk-in, change a price, take cash and see the change, then print or share the invoice.\n- Staff answer the items customers asked for straight from the order: add it with a price, or mark it not available.\n- The bag is tidier: full item names, clear text, and \"Can't find an item? Ask the shop\" right in the bag.\n- New orders ring like a call even when the phone is asleep or another app is open.\n- Item pictures show large with zoom, and items switch on or off at the top.\n- The app now finds its own updates.\n\nদোকান ১.৩.৬\n\n- নতুন বিক্রি এখন আসল ক্যাশ কাউন্টারের মতো: স্ক্যান বা খুঁজে পণ্য যোগ, ক্রেতা বা ওয়াক-ইন বাছাই, দাম বদল, নগদ নিয়ে ফেরত হিসাব, তারপর ইনভয়েস প্রিন্ট বা শেয়ার।\n- ক্রেতা যা চেয়েছেন, কর্মীরা অর্ডার থেকেই উত্তর দিতে পারেন: দামসহ যোগ করুন, অথবা পাওয়া যায়নি বলুন।\n- ব্যাগ আরও গোছানো: পণ্যের পুরো নাম, পরিষ্কার লেখা, আর ব্যাগেই \"পণ্য খুঁজে পাননি? দোকানকে বলুন\"।\n- ফোন ঘুমিয়ে থাকলে বা অন্য অ্যাপ খোলা থাকলেও নতুন অর্ডারে কলের মতো রিং বাজবে।\n- পণ্যের ছবি বড় করে জুম করে দেখা যায়, আর উপরেই পণ্য চালু বা বন্ধ করা যায়।\n- অ্যাপ এখন নিজেই নতুন আপডেট খুঁজে পায়।",
+  "date": "2026-09-28",
   "apk": {
-    "arm64": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.5/Dokan-arm64.apk",
-    "arm32": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.5/Dokan-arm32.apk"
+    "arm64": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.6/Dokan-arm64.apk",
+    "arm32": "https://github.com/mamun-akand/dokan-releases/releases/download/v1.3.6/Dokan-arm32.apk"
   }
 }
